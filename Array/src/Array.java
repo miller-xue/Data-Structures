@@ -110,6 +110,81 @@ public class Array {
         data[index] = e;
     }
 
+    /**
+     * 查找数组中是否有元素e
+     * @param e
+     * @return
+     */
+    public boolean contins(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找数组中元素e所在的索引，如果不存在元素e，则返回-1
+     * @param e
+     * @return
+     */
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int[] findAll(int e) {
+        // TODO
+        return null;
+    }
+
+    /**
+     * 从数组中删除index位置的元素，返回删除的元素
+     * @param index
+     * @return
+     */
+    public int remove(int index) {
+        if (index < 0 || index >= size)
+            throw new IllegalArgumentException("remove failed. Index is illegal.");
+        int ret = data[index];
+        for (int i = index + 1; i < size; i++)
+            data[i - 1] = data[i];
+        size --;
+        return ret;
+    }
+
+    /**
+     * 从数组中删除第一个元素，返回删除的元素
+     * @return
+     */
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 从数组中删除最后一个元素，返回删除的元素
+     * @return
+     */
+    public int removeLast() {
+        return remove(size - 1);
+    }
+    // 从数组中删除元素e（存在删除第一个）
+    public void removeElement(int e) {
+        int index = find(e);
+        if(index != -1)
+            remove(index);
+    }
+
+    public void removeAllElement(int e){
+        // TODO
+    }
+
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
