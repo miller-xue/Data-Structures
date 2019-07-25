@@ -11,18 +11,26 @@ public class Main {
         System.out.println(arrayStack);
         arrayStack.pop();
         System.out.println(arrayStack);
+        String str = "[[]{}()";
+        System.out.println(isValid(str));
     }
 
-    public boolean isValid(String s) {
+    public static boolean isValid(String s) {
         Stack<Character> stack = new Stack();
         for (int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
-            if (c.equals('[') || c.equals('{') || c.equals('('))
+            char c = s.charAt(i);
+            if (c == '[' || c == '{' || c == '(')
                 stack.push(c);
             else {
                 if (stack.isEmpty())
                     return false;
-                Character top = stack.peek();//TODO
+                char topChar = stack.pop();
+                if (c == ')' && topChar != '(')
+                    return false;
+                if (c == ']' && topChar != '[')
+                    return false;
+                if (c == '}' && topChar != '{')
+                    return false;
             }
         }
         return stack.isEmpty();
