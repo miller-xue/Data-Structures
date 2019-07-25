@@ -23,5 +23,6 @@ public class Main {
         arr.remove(1);
         arr.remove(1);
         System.out.println(arr);
+        new Array<>(null);
     }
 }

@@ -1,7 +1,17 @@
+import com.sun.istack.internal.NotNull;
 
-// 元素
+/**
+ *  增： O(n)
+ *  删： O(n)
+ *  改：已知索引O(1); 未知索引O(n)
+ *  查：已知索引O(1); 未知索引O(n)
+ * @param <E>
+ */
 public class Array<E> {
 
+    /**
+     * 元素数组
+     */
     private E[] data;
 
     /**
@@ -16,11 +26,10 @@ public class Array<E> {
 
     /**
      * 构造函数，传入数组容量capacity构造Array
-     * @param capacity
+     * @param capacity 容量
      */
     public Array(int capacity) {
-//        data = new E[capacity]; java不允许直接new 泛型类型数组，历史遗留问题
-        data = (E[]) new Object[capacity];
+        data = (E[]) new Object[capacity];//        data = new E[capacity]; java不允许直接new 泛型类型数组，历史遗留问题
         size = 0;
     }
     /**
@@ -31,8 +40,13 @@ public class Array<E> {
     }
 
     public Array(E[] data) {
-        this.data = data;
-        this.size = data.length;
+        if (data != null && data.length != 0) {
+            this.data = data;
+            this.size = data.length;
+        }else {
+            data = (E[]) new Object[INIT_CAPACITY];//        data = new E[capacity]; java不允许直接new 泛型类型数组，历史遗留问题
+            size = 0;
+        }
     }
 
     /**
@@ -60,32 +74,36 @@ public class Array<E> {
     }
 
     /**
-     * 向所有元素后添加一个新的元素
+     * 向所有元素后添加一个新的元素 O(1)
      * @param e 新的元素
      */
     public void addLast(E e) {
         add(size, e);
     }
 
+    /**
+     * 向所有元素开头添加一个新的元素 O(N)
+     * @param e
+     */
     public void addFirst(E e){
         add(0, e);
     }
 
 
     /**
-     * 在第index位置插入一个新的元素e
+     * 在第index位置插入一个新的元素e O(N/2) = O(N)
      *
      * @param index 位置
      * @param e     新元素
      */
     public void add(int index, E e) {
-        // 判断数组指定位置是否超出
+        // 判断数组指定位置是否超出   index要大于等于0 小于等于size   0 --- size 中间
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
         // 判断数组容量
         if (size == data.length)
             resize(2 * getCapacity());
-//            throw new IllegalArgumentException("Add failed. Array is full.");
+        //            throw new IllegalArgumentException("Add failed. Array is full.");
         for (int i = size - 1; i >= index; i--)
             data[i + 1] = data[i];
         data[index] = e;
@@ -93,7 +111,7 @@ public class Array<E> {
     }
 
     /**
-     *
+     * O(N)
      * @param newCapacity 新容量
      */
     private void resize(int newCapacity) {
@@ -105,7 +123,7 @@ public class Array<E> {
     }
 
     /**
-     * 获得指定位置新元素
+     * 获得指定位置新元素 O(1)
      * @param index
      * @return
      */
@@ -117,7 +135,7 @@ public class Array<E> {
 
     /**
      * 修改指定位置的元素
-     * @param index 指定位置
+     * @param index 指定位置 O(1)
      * @param e 新元素
      */
     public void set(int index, E  e) {
@@ -127,7 +145,7 @@ public class Array<E> {
     }
 
     /**
-     * 查找数组中是否有元素e
+     * 查找数组中是否有元素e O(N)
      * @param e
      * @return
      */
@@ -141,7 +159,7 @@ public class Array<E> {
 
     /**
      * 查找数组中元素e所在的索引，如果不存在元素e，则返回-1
-     * @param e
+     * @param e O(N)
      * @return
      */
     public int find(E e) {
@@ -159,7 +177,7 @@ public class Array<E> {
 
     /**
      * 从数组中删除index位置的元素，返回删除的元素
-     * @param index
+     * @param index O(n/2) = O(N)
      * @return
      */
     public E remove(int index) {
@@ -170,14 +188,14 @@ public class Array<E> {
             data[i - 1] = data[i];
         size --;
         data[size] = null; // TODO 对象的垃圾回收  loitering objects != memory leak
-        if(size == data.length /2)
+        if (size == data.length / 4 && data.length / 2 == 0)  // 懒缩容量 , 数组缩容的时候 不能为空，
             resize(data.length / 2);
         return ret;
     }
 
     /**
      * 从数组中删除第一个元素，返回删除的元素
-     * @return
+     * @return O(N)
      */
     public E removeFirst() {
         return remove(0);
@@ -185,7 +203,7 @@ public class Array<E> {
 
     /**
      * 从数组中删除最后一个元素，返回删除的元素
-     * @return
+     * @return O(1)
      */
     public E removeLast() {
         return remove(size - 1);
