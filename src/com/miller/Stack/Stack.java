@@ -1,3 +1,5 @@
+package com.miller.Stack;
+
 public interface Stack<E> {
 
     int getSize();

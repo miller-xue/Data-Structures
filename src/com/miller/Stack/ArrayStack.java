@@ -1,3 +1,7 @@
+package com.miller.Stack;
+
+import com.miller.Array.Array;
+
 public class ArrayStack<E> implements Stack<E> {
     private Array<E> array;
 
