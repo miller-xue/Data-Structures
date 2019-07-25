@@ -1,4 +1,4 @@
-package com.miller.Array;
+package com.miller.array;
 
 public class Student {
     private String name;

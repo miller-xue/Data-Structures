@@ -1,6 +1,4 @@
-package com.miller.Array;
-
-import java.util.ArrayList;
+package com.miller.array;
 
 public class Main {
     /**

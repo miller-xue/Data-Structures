@@ -1,8 +1,9 @@
-package com.miller.Stack;
+package com.miller.stack;
 
-import com.miller.Array.Array;
+import com.miller.array.Array;
 
 public class ArrayStack<E> implements Stack<E> {
+    // 数组
     private Array<E> array;
 
     public ArrayStack(int capacity) {
@@ -66,7 +67,7 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append("Stack: ");
+        res.append("stack: ");
         res.append("[");
         for (int i = 0; i < getSize(); i++) {
             res.append(array.get(i));

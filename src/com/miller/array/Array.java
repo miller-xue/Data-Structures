@@ -1,6 +1,4 @@
-package com.miller.Array;
-
-import com.sun.istack.internal.NotNull;
+package com.miller.array;
 
 /**
  *  增： O(n)
@@ -105,7 +103,7 @@ public class Array<E> {
         // 判断数组容量
         if (size == data.length)
             resize(2 * getCapacity());
-        //            throw new IllegalArgumentException("Add failed. Array is full.");
+        //            throw new IllegalArgumentException("Add failed. array is full.");
         for (int i = size - 1; i >= index; i--)
             data[i + 1] = data[i];
         data[index] = e;
@@ -234,7 +232,7 @@ public class Array<E> {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(String.format("Array: size = %d , capacity = %d\n", size, getCapacity()));
+        res.append(String.format("array: size = %d , capacity = %d\n", size, getCapacity()));
         res.append('[');
         for (int i = 0; i < size; i++) {
             res.append(data[i]);

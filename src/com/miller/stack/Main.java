@@ -1,5 +1,4 @@
-package com.miller.Stack;
-import java.util.ArrayList;
+package com.miller.stack;
 import java.util.Stack;
 
 public class Main {

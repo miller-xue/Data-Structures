@@ -1,4 +1,4 @@
-package com.miller.Stack;
+package com.miller.stack;
 
 public interface Stack<E> {
 
