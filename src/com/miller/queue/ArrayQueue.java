@@ -30,7 +30,7 @@ public class ArrayQueue<E> implements Queue<E> {
         array.addLast(e);
     }
     /**
-     * O(n)
+     * O(n) 删除一个后面的所有元素都要向前移一位
      * @return
      */
     @Override
