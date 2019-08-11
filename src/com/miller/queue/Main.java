@@ -16,12 +16,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int opCount = 100000;
-        Queue<Integer> arrayQueue = new ArrayQueue<>();
-        System.out.println(testQueue(arrayQueue,opCount)); //4.4699757
+        int opCount = 10000000;
+//        Queue<Integer> arrayQueue = new ArrayQueue<>();
+//        System.out.println(testQueue(arrayQueue,opCount)); //4.4699757
 
         Queue<Integer> loopQueue = new LoopQueue<>();
         System.out.println(testQueue(loopQueue,opCount)); // 0.0389651
+
+        Queue<Integer> linkedListQueue = new LinkedListQueue<>();
+        System.out.println(testQueue(linkedListQueue,opCount)); // 0.0389651
+
 
     }
 }
