@@ -16,9 +16,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int opCount = 10;
-//        Queue<Integer> arrayQueue = new ArrayQueue<>();
-//        System.out.println(testQueue(arrayQueue,opCount)); //4.4699757
+        int opCount = 1000000; //数据量一上来，数组队列就比链表队列性能高了。因为链表要不停的new对象，造成内存消耗
+        Queue<Integer> arrayQueue = new ArrayQueue<>();
+        System.out.println(testQueue(arrayQueue,opCount)); //4.4699757
 
         Queue<Integer> loopQueue = new LoopQueue<>();
         System.out.println(testQueue(loopQueue,opCount)); // 0.0389651
