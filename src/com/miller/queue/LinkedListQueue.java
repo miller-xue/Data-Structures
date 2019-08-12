@@ -38,13 +38,23 @@ public class LinkedListQueue<E> implements Queue<E> {
     public void enqueue(E e) {
         // 给tail后缀节点
         Node<E> node = new Node<>(e);
-        if (tail == null) {
+        if (head == null) {
             head = node;
+        } else if (head != null && tail == null) {
+            head.next = node;
             tail = node;
-        } else{
+            // 如果链表中有一个节点 head和tail 指向yig    tail.next = node; tail = tail.next;  所以链表尾== null 的时候直接head和tail指向一个就可
+        }else {
             tail.next = node;
-            tail = tail.next;
+            tail = tail.next; // tail指向最后的节点
         }
+//        if (tail == null) { // 头尾 == null   是没有节点的。  头 == 尾 是队列中加入一个元素的  头 ！= 尾，队列长度大于1的
+//            head = node;
+//            tail = node;
+//        } else{ //给尾节点添加
+//            tail.next = node; // 给当前尾节点加入新尾
+//            tail = tail.next; // tail指向最后的节点
+//        }
         size++;
     }
 
@@ -55,7 +65,7 @@ public class LinkedListQueue<E> implements Queue<E> {
         Node<E> retNode = head;
         head = head.next;
         retNode.next = null;
-        if(head == null)
+        if(head == null) // 如果头节点等于空了，证明链表 == 空了
             tail = null;
         size --;
         return retNode.e;

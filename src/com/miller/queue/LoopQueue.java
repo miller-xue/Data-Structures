@@ -94,7 +94,6 @@ public class LoopQueue<E> implements Queue<E> {
     }
 
     // TODO toString  resize 两种不同的遍历方式
-
     private void resize(int newCapacity) {
         // 创建一个新数组 数组容量+1   1是维护环形队列的容量
         E[] newData = (E[]) new Object[newCapacity + 1];

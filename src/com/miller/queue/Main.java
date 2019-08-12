@@ -16,7 +16,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int opCount = 10000000;
+        int opCount = 10;
 //        Queue<Integer> arrayQueue = new ArrayQueue<>();
 //        System.out.println(testQueue(arrayQueue,opCount)); //4.4699757
 
